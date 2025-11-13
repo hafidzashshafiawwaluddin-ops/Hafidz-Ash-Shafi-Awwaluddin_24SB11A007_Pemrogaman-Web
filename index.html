@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Portfolio — Nama Anda</title>
+    <style>
+        :root {
+            --bg: #0f1724;
+            /* dark navy */
+            --card: #0b1220;
+            --accent: #3b82f6;
+            /* blue */
+            --muted: #94a3b8;
+            --glass: rgba(255, 255, 255, 0.03);
+            --radius: 14px;
+            --max-w: 1100px;
+            --gap: 24px;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            margin: 0;
+            background: linear-gradient(180deg, #071225 0%, var(--bg) 60%);
+            color: #e6eef8;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.45;
+        }
+
+        .container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 64px 20px
+        }
+
+        /* NAVBAR */
+        .nav {
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 18px;
+            z-index: 60;
+            display: flex;
+            justify-content: center;
+            pointer-events: none
+        }
+
+        nav .inner {
+            width: var(--max-w);
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            backdrop-filter: blur(6px);
+            border-radius: 12px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            pointer-events: auto
+        }
+
+        .brand {
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.3px
+        }
+
+        .navlinks {
+            display: flex;
+            gap: 8px;
+            margin-left: auto
+        }
+
+        .navlinks a {
+            padding: 8px 12px;
+            border-radius: 8px;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 14px
+        }
+
+        .navlinks a.active,
+        .navlinks a:hover {
+            background: linear-gradient(90deg, rgba(59, 130, 246, 0.12), rgba(59, 130, 246, 0.06));
+            color: #fff
+        }
+
+        /* HERO */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: var(--gap);
+            align-items: center;
+            padding: 88px 0
+        }
+
+        .hero-left {
+            padding-right: 16px
+        }
+
+        .name {
+            font-size: 38px;
+            margin: 0 0 8px
+        }
+
+        .role {
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 14px
+        }
+
+        .desc {
+            color: var(--muted);
+            font-size: 16px
+        }
+
+        .cta {
+            margin-top: 18px;
+            display: flex;
+            gap: 12px
+        }
+
+        .btn {
+            background: var(--accent);
+            color: #fff;
+            padding: 10px 14px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600
+        }
+
+        .btn.ghost {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: var(--muted)
+        }
+
+        .hero-right {
+            display: flex;
+            justify-content: center
+        }
+
+        .avatar {
+            width: 320px;
+            height: 320px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.14), rgba(96, 165, 250, 0.06));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 30px rgba(2, 6, 23, 0.6)
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block
+        }
+
+        /* SKILLS */
+        section {
+            padding: 56px 0
+        }
+
+        .section-title {
+            font-size: 20px;
+            margin-bottom: 18px
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 18px
+        }
+
+        .skill-card {
+            background: var(--card);
+            padding: 18px;
+            border-radius: 14px;
+            box-shadow: 0 6px 20px rgba(2, 6, 23, 0.6);
+            transition: transform .28s cubic-bezier(.2, .9, .2, 1), box-shadow .28s
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 40px rgba(2, 6, 23, 0.8)
+        }
+
+        .skill-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+        }
+
+        .skill-title {
+            font-weight: 700;
+            margin-bottom: 6px
+        }
+
+        .skill-desc {
+            color: var(--muted);
+            font-size: 14px
+        }
+
+        /* CONTACT */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 24px
+        }
+
+        .contact-card {
+            background: var(--glass);
+            padding: 18px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.03)
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 6px;
+            color: var(--muted)
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            background: transparent;
+            color: inherit
+        }
+
+        textarea {
+            min-height: 120px
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 14px
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 28px 0;
+            color: var(--muted);
+            text-align: center
+        }
+
+        /* Responsive */
+        @media (max-width:900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 28px;
+                padding-top: 110px
+            }
+
+            .hero-right {
+                order: -1
+            }
+
+            .avatar {
+                width: 240px;
+                height: 240px
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr
+            }
+
+            nav .inner {
+                padding: 8px
+            }
+        }
+
+        /* small utilities */
+        .grid {
+            display: grid;
+            gap: 12px
+        }
+
+        .chip {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.03);
+            font-size: 13px
+        }
+
+        /* toast */
+        .toast {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background: #0b1220;
+            padding: 12px 16px;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
+            box-shadow: 0 8px 30px rgba(2, 6, 23, 0.6);
+            display: none
+        }
+
+        .toast.show {
+            display: block
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <nav class="inner">
+            <div class="brand">Hafidz Ash Shafi Awwaluddin</div>
+            <div class="navlinks">
+                <a href="#home" class="navlink">Home</a>
+                <a href="#skills" class="navlink">Skills</a>
+                <a href="#contact" class="navlink">Contact</a>
+            </div>
+        </nav>
+    </div>
+
+    <main class="container">
+        <section id="home" class="hero">
+            <div class="hero-left">
+                <h1 class="name">Halo, saya <span class="role">Hafidz Ash Shafi Awwaluddin</span></h1>
+                <div class="desc">Saya seorang <strong>Digital Business</strong> student dan pembelajar aktif di bidang
+                    UX, frontend, dan strategi digital. Saya suka menciptakan solusi yang memadukan desain dan data
+                    untuk menghasilkan pengalaman yang efektif dan menyenangkan.</div>
+                <div class="cta">
+                    <a class="btn" href="#contact">Hire Me</a>
+                    <a class="btn ghost" href="#skills">Lihat Keahlian</a>
+                </div>
+                <div style="margin-top:14px">
+                    <span class="chip">Location: Purwokerto</span>
+                    <span class="chip" style="margin-left:8px">Student — Bisnis Digital</span>
+                </div>
+            </div>
+            <div class="hero-right">
+                <div class="avatar">
+                    <!-- Ganti src dengan foto anda (recommended 1:1 or 4:5) -->
+                    <img src="profil.jpeg" alt="Foto Profil">
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2 class="section-title">Keahlian</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">💻</div>
+                    <div class="skill-title">Frontend Development</div>
+                    <div class="skill-desc">HTML, CSS, JavaScript — membangun UI responsif dan interaktif.</div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">🎨</div>
+                    <div class="skill-title">UI / UX Design</div>
+                    <div class="skill-desc">Wireframing, prototyping, dan pengujian usability.</div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">📊</div>
+                    <div class="skill-title">Digital Marketing</div>
+                    <div class="skill-desc">Strategi konten, analitik, dan optimasi konversi.</div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">🤖</div>
+                    <div class="skill-title">AI Basics</div>
+                    <div class="skill-desc">Pemahaman dasar tentang AI dan penerapannya dalam bisnis digital.</div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2 class="section-title">Kontak</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <p class="muted">Tertarik bekerja sama atau ingin berdiskusi? Isi form ini, saya akan membalas lewat
+                        email.</p>
+
+                    <form id="contactForm">
+                        <div style="margin-top:12px">
+                            <label for="name">Nama</label>
+                            <input id="name" name="name" placeholder="Nama Anda" required>
+                        </div>
+                        <div style="margin-top:12px">
+                            <label for="email">Email</label>
+                            <input id="email" name="email" type="email" placeholder="email@contoh.com" required>
+                        </div>
+                        <div style="margin-top:12px">
+                            <label for="message">Pesan</label>
+                            <textarea id="message" name="message" placeholder="Tulis pesan..." required></textarea>
+                        </div>
+                        <div style="margin-top:12px;display:flex;gap:8px">
+                            <button class="btn" type="submit">Kirim Pesan</button>
+                            <button class="btn ghost" type="button" id="copyEmail">Salin Email</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div>
+                    <div class="contact-card" style="margin-bottom:12px">
+                        <h3 style="margin:0 0 8px">Info Kontak</h3>
+                        <p class="muted">Email: <strong id="emailText">hafidzashshafiawwaluddin.com</strong></p>
+                        <p class="muted">Telepon: <strong>+62 8953-8688-2100</strong></p>
+                        <p class="muted">Lokasi: Purwokerto, Indonesia</p>
+                        <div style="margin-top:12px">
+                            <a class="chip" href="#">Behance</a>
+                            <a class="chip" href="#" style="margin-left:8px">LinkedIn</a>
+                            <a class="chip" href="#" style="margin-left:8px">GitHub</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <h3 style="margin:0 0 8px">Cara Lain Menghubungi</h3>
+                        <p class="muted">Anda juga dapat mengirim email langsung menggunakan tombol di bawah.</p>
+                        <div style="margin-top:12px">
+                            <a class="btn" id="mailtoBtn" href="mailto:youremail@example.com?subject=Halo">Kirim
+                                Email</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div>© <span id="year"></span> Hafidz Ash Shafi Awwaluddin — All rights reserved.</div>
+        </footer>
+
+    </main>
+
+    <div class="toast" id="toast">Pesan terkirim — terima kasih!</div>
+
+    <script>
+        // Active nav link using IntersectionObserver
+        const sections = document.querySelectorAll('section[id], header');
+        const navlinks = document.querySelectorAll('.navlink');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                const id = e.target.id;
+                if (!id) return;
+                const link = document.querySelector('.navlinks a[href="#' + id + '"]');
+                if (e.isIntersecting) {
+                    navlinks.forEach(n => n.classList.remove('active'));
+                    if (link) link.classList.add('active');
+                }
+            })
+        }, { threshold: 0.45 });
+        document.querySelectorAll('main section').forEach(s => observer.observe(s));
+
+        // Contact form behaviour (local placeholder)
+        const form = document.getElementById('contactForm');
+        const toast = document.getElementById('toast');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // basic validation done by required + email type
+            const data = new FormData(form);
+            // Try to open mailto as fallback
+            const subject = encodeURIComponent('Interested: ' + data.get('name'));
+            const body = encodeURIComponent(data.get('message') + '\n\nEmail: ' + data.get('email'));
+            window.location.href = `mailto:youremail@example.com?subject=${subject}&body=${body}`;
+            showToast('Pesan akan dikirim melalui email Anda.');
+            form.reset();
+        });
+
+        function showToast(msg) {
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // copy email
+        document.getElementById('copyEmail').addEventListener('click', () => {
+            const email = document.getElementById('emailText').textContent;
+            navigator.clipboard?.writeText(email).then(() => showToast('Email disalin ke clipboard'))
+                .catch(() => showToast('Gagal menyalin'));
+        });
+
+        // add current year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // small pinch parallax on avatar when mouse moves
+        const avatar = document.querySelector('.avatar');
+        if (avatar) {
+            avatar.addEventListener('mousemove', (e) => {
+                const r = avatar.getBoundingClientRect();
+                const x = (e.clientX - r.left - r.width / 2) / 12;
+                const y = (e.clientY - r.top - r.height / 2) / 12;
+                avatar.style.transform = `translate(${x}px,${y}px) scale(1.02)`;
+            });
+            avatar.addEventListener('mouseleave', () => {
+                avatar.style.transform = '';
+            });
+        }
+
+        // smooth focus for keyboard nav
+        document.querySelectorAll('.navlink').forEach(a => {
+            a.addEventListener('click', () => { document.activeElement.blur(); });
+        });
+    </script>
+</body>
+
+</html>
